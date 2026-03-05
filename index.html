@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Women's Day 8/3</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Happy Women's Day">
+    <meta property="og:description" content="Chúc mừng ngày Quốc tế Phụ nữ 8/3">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #ff4d85;
+            --gold-color: #ffb6c1;
+            --bg-color: #fff9fa;
+            --text-color: #333;
+            --album-transition: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #ffe6ea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Canh giữa toàn bộ body */
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            background-color: var(--bg-color);
+            box-shadow: 0 0 30px rgba(255, 77, 133, 0.2);
+            overflow: hidden;
+            position: relative;
+            min-height: 100vh;
+            /* Sử dụng Flexbox để canh giữa phong bì bên trong container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatCard {
+            0% {
+                transform: translateY(-20px) scale(1);
+            }
+
+            100% {
+                transform: translateY(-28px) scale(1.02);
+            }
+        }
+
+        /* --- PHONG BÌ --- */
+        .envelope-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.5s forwards;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            transition: transform 0.5s;
+        }
+
+        /* Thẻ thiệp (Clickable) */
+        .card {
+            position: absolute;
+            bottom: 0;
+            left: 25px;
+            width: 250px;
+            height: 300px;
+            background: #fff0f3;
+            border: 2px dashed #ffb6c1;
+            padding: 6px;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .envelope-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #c9184a;
+            border-radius: 0 0 10px 10px;
+            z-index: 1;
+            box-shadow: 0 15px 35px rgba(255, 77, 133, 0.3);
+        }
+
+        .pocket-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            clip-path: polygon(0 0, 0 100%, 55% 53%);
+            background: linear-gradient(135deg, #ff4d85 0%, #d81b60 100%);
+            background-image: url('https://www.transparenttextures.com/patterns/felt.png'), linear-gradient(135deg, #ff4d85 0%, #d81b60 100%);
+            background-blend-mode: multiply;
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .pocket-right {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            clip-path: polygon(100% 0, 100% 100%, 45% 53%);
+            background: linear-gradient(225deg, #e91e63 0%, #ff4d85 100%);
+            background-image: url('https://www.transparenttextures.com/patterns/felt.png'), linear-gradient(225deg, #e91e63 0%, #ff4d85 100%);
+            background-blend-mode: multiply;
+            z-index: 11;
+            pointer-events: none;
+            filter: drop-shadow(-2px 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .pocket-bottom {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            clip-path: polygon(0 100%, 100% 100%, 50% 40%);
+            background: linear-gradient(to top, #c2185b 0%, #ff4d85 100%);
+            background-image: url('https://www.transparenttextures.com/patterns/felt.png'), linear-gradient(to top, #c2185b 0%, #ff4d85 100%);
+            background-blend-mode: multiply;
+            z-index: 12;
+            pointer-events: none;
+            filter: drop-shadow(0 -4px 6px rgba(0, 0, 0, 0.15));
+        }
+
+        .envelope-lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 43%;
+            border-bottom-left-radius: 50% 100%;
+            border-bottom-right-radius: 50% 100%;
+            background: linear-gradient(180deg, #ff75a3 0%, #d81b60 100%);
+            background-image: url('https://www.transparenttextures.com/patterns/felt.png'), linear-gradient(180deg, #ff75a3 0%, #d81b60 100%);
+            background-blend-mode: multiply;
+            transform-origin: top;
+            transition: transform 0.8s ease-in-out, z-index 0.2s;
+            z-index: 20;
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        .wax-seal {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff4d85);
+            border: 1px solid #d81b60;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 30;
+            transition: all 0.5s ease;
+        }
+
+        .wax-seal::before {
+            content: url('https://lamltf.github.io/women-day/icduck.png');
+            /* Thay link ảnh của bạn vào đây */
+            display: block;
+            /* Đổi thành block để ảnh hiển thị tốt hơn */
+            width: 24px;
+            /* Chỉnh lại kích thước ảnh cho vừa con dấu */
+            height: 24px;
+            opacity: 0.9;
+            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+        }
+
+        .envelope-wrapper.open .envelope-lid {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper.open .card {
+            opacity: 1;
+            transform: translateY(-20px) scale(1);
+            transition-delay: 0.5s;
+            z-index: 5;
+            padding-top: 50px;
+            animation: floatCard 2s ease-in-out infinite alternate 1.5s;
+        }
+
+        .card-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #c9184a;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            color: #555;
+            text-align: center;
+            padding: 0 15px;
+            line-height: 1.5;
+        }
+
+        .click-hint {
+            font-size: 12px;
+            color: #ff4d85;
+            margin-top: 15px;
+            font-style: italic;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        /* --- MODAL BỨC THƯ TOÀN MÀN HÌNH --- */
+        .letter-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 230, 234, 0.9);
+            z-index: 100000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .letter-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .letter-content {
+            width: 90%;
+            max-width: 450px;
+            max-height: 80vh;
+            background: #fff;
+            border: 2px dashed #ffb6c1;
+            border-radius: 12px;
+            padding: 30px 20px;
+            position: relative;
+            overflow-y: auto;
+            box-shadow: 0 15px 50px rgba(255, 77, 133, 0.15);
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .letter-modal.active .letter-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .letter-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .letter-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .letter-content::-webkit-scrollbar-thumb {
+            background: #ffb6c1;
+            border-radius: 10px;
+        }
+
+        .close-letter {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 32px;
+            color: #ff4d85;
+            cursor: pointer;
+            transition: transform 0.2s;
+            line-height: 1;
+        }
+
+        .close-letter:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        .letter-body {
+            font-family: 'Quicksand', sans-serif;
+            color: #444;
+            line-height: 1.8;
+            margin-top: 15px;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        .letter-body p {
+            margin-bottom: 15px;
+        }
+
+        /* --- NÚT NHẠC NỀN --- */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(255, 77, 133, 0.3);
+            z-index: 9999;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .music-control.playing {
+            animation: spinMusic 4s linear infinite;
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        @keyframes spinMusic {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="envelope-section">
+            <div class="envelope-wrapper" id="envelope">
+                <div class="envelope-back"></div>
+                <div class="card" onclick="openFullLetter()">
+                    <div class="card-title">Happy 8/3</div>
+                    <div class="card-title" style="font-size: 26px;">Em Ngan Dieu Duong</div>
+                    <div class="click-hint"><i class="fa-solid fa-hand-pointer"></i> Nhấn vào để đọc</div>
+                </div>
+                <div class="pocket-left"></div>
+                <div class="pocket-right"></div>
+                <div class="pocket-bottom"></div>
+                <div class="envelope-lid"></div>
+                <div class="wax-seal"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="letter-modal" class="letter-modal">
+        <div class="letter-content">
+            <span class="close-letter" onclick="closeFullLetter()">&times;</span>
+            <div class="card-title" style="text-align: center;">Gửi Em </div>
+            <div class="letter-body">
+                <p>Chào cô gái xinh đẹp của anh,</p>
+                <p>Đây là mùng 8/3 đầu tiên mà chúng mình đón cùng nhau. Từ ngày có em bước vào cuộc sống, mỗi ngày của
+                    anh đều trở nên đặc biệt và ngọt ngào hơn rất nhiều.</p>
+                <p>Dù chúng mình mới nắm tay nhau bước đi một đoạn đường, nhưng anh luôn trân trọng từng khoảnh khắc
+                    được ở bên em, được nghe em kể chuyện và nhìn thấy nụ cười của em.</p>
+                <p>Nhân ngày 8/3, chúc người yêu của anh luôn rạng rỡ, bình an và hạnh phúc. Cứ yên tâm tự tin làm những
+                    điều em thích nhé, vì ngoảnh lại phía sau luôn có anh ở đây rồi.</p>
+                <p>Cảm ơn em vì đã đến bên anh. Yêu em nhiều! ❤️</p>
+                <p
+                    style="text-align: right; font-weight: bold; font-family: 'Dancing Script', cursive; font-size: 24px; color: #c9184a; margin-top: 30px;">
+                    From: Anh Lam IT
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://lamltf.github.io/wedding-invitation/assets/wedding.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-btn" class="music-control" onclick="toggleMusic()">
+        <i class="fa-solid fa-volume-xmark" id="music-icon"></i>
+    </button>
+
+    <script>
+        function autoOpenEnvelope() {
+            const envelope = document.getElementById('envelope');
+            envelope.classList.add('open');
+            bgMusic.play().then(() => updateMusicUI(true)).catch(() => { });
+        }
+
+        function openFullLetter() {
+            document.getElementById('letter-modal').classList.add('active');
+        }
+
+        function closeFullLetter() {
+            document.getElementById('letter-modal').classList.remove('active');
+        }
+
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => updateMusicUI(true));
+            } else {
+                bgMusic.pause();
+                updateMusicUI(false);
+            }
+        }
+
+        function updateMusicUI(isPlaying) {
+            if (isPlaying) {
+                musicBtn.classList.add('playing');
+                musicIcon.classList.remove('fa-volume-xmark');
+                musicIcon.classList.add('fa-music');
+            } else {
+                musicBtn.classList.remove('playing');
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-volume-xmark');
+            }
+        }
+
+        function firstInteraction() {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => updateMusicUI(true)).catch(() => { });
+            }
+            document.removeEventListener('click', firstInteraction);
+            document.removeEventListener('touchstart', firstInteraction);
+            document.removeEventListener('scroll', firstInteraction);
+        }
+
+        document.addEventListener('click', firstInteraction, { once: true });
+        document.addEventListener('touchstart', firstInteraction, { once: true });
+        document.addEventListener('scroll', firstInteraction, { once: true });
+
+        window.onload = function () {
+            setTimeout(autoOpenEnvelope, 1000);
+        };
+    </script>
+</body>
+
+</html>
