@@ -215,15 +215,12 @@
         }
 
         .wax-seal::before {
-            content: url('https://lamltf.github.io/women-day/icduck.png');
-            /* Thay link ảnh của bạn vào đây */
+            content: url('https://lamltf.github.io/women-day/icduck2.png');
             display: block;
-            /* Đổi thành block để ảnh hiển thị tốt hơn */
             width: 24px;
-            /* Chỉnh lại kích thước ảnh cho vừa con dấu */
             height: 24px;
             opacity: 0.9;
-            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+            /* filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2)); */
         }
 
         .envelope-wrapper.open .envelope-lid {
@@ -400,6 +397,29 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* --- HIỆU ỨNG HOA RƠI --- */
+        .petal {
+            position: fixed;
+            top: -10%;
+            z-index: 0;
+            /* Nằm dưới phong bì */
+            user-select: none;
+            pointer-events: none;
+            /* Không cản trở việc click vào phong bì */
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(110vh) translateX(20px) rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -435,7 +455,7 @@
                     được ở bên em, được nghe em kể chuyện và nhìn thấy nụ cười của em.</p>
                 <p>Nhân ngày 8/3, chúc người yêu của anh luôn rạng rỡ, bình an và hạnh phúc. Cứ yên tâm tự tin làm những
                     điều em thích nhé, vì ngoảnh lại phía sau luôn có anh ở đây rồi.</p>
-                <p>Cảm ơn em vì đã đến bên anh. Yêu em nhiều! ❤️</p>
+                <p>Cảm ơn em vì đã đến bên anh. Yêu em nhiều và em cũng yêu anh nhiều hơn nhé ❤️</p>
                 <p
                     style="text-align: right; font-weight: bold; font-family: 'Dancing Script', cursive; font-size: 24px; color: #c9184a; margin-top: 30px;">
                     From: Anh Lam IT
@@ -505,7 +525,34 @@
         document.addEventListener('touchstart', firstInteraction, { once: true });
         document.addEventListener('scroll', firstInteraction, { once: true });
 
+
+        function createPetals() {
+            const symbols = ['🌸', '💮', '✨', '💖', '💌']; // Các icon sẽ rơi (có thể thêm bớt)
+            const petalCount = 25; // Số lượng hoa rơi trên màn hình
+
+            for (let i = 0; i < petalCount; i++) {
+                let petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+                // Vị trí xuất hiện ngẫu nhiên theo chiều ngang
+                petal.style.left = Math.random() * 100 + 'vw';
+
+                // Kích thước to nhỏ ngẫu nhiên
+                petal.style.fontSize = Math.random() * 1.5 + 0.8 + 'rem';
+
+                // Tốc độ rơi ngẫu nhiên (từ 5 đến 15 giây)
+                petal.style.animationDuration = Math.random() * 10 + 5 + 's';
+
+                // Thời gian bắt đầu rơi trễ ngẫu nhiên để không bị rớt cùng 1 lúc
+                petal.style.animationDelay = Math.random() * 5 + 's';
+
+                document.body.appendChild(petal);
+            }
+        }
+
         window.onload = function () {
+            createPetals();
             setTimeout(autoOpenEnvelope, 1000);
         };
     </script>
