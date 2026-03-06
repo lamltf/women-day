@@ -527,24 +527,39 @@
 
 
         function createPetals() {
-            const symbols = ['🌸', '💮', '✨', '💖', '💌']; // Các icon sẽ rơi (có thể thêm bớt)
-            const petalCount = 25; // Số lượng hoa rơi trên màn hình
+            const symbols = [
+                'https://lamltf.github.io/women-day/assets/image1.png',
+                'https://lamltf.github.io/women-day/assets/image2.png',
+                'https://lamltf.github.io/women-day/assets/image3.png',
+                'https://lamltf.github.io/women-day/assets/image4.png',
+                'https://lamltf.github.io/women-day/assets/image6.png',
+                'https://lamltf.github.io/women-day/assets/image7.png',
+                'https://lamltf.github.io/women-day/assets/image8.png',
+            ];
+            const petalCount = 20; // Số lượng ảnh rơi (đừng để nhiều quá sẽ rối mắt)
 
             for (let i = 0; i < petalCount; i++) {
                 let petal = document.createElement('div');
                 petal.className = 'petal';
-                petal.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+                // Chọn ngẫu nhiên 1 link ảnh từ mảng trên
+                let randomImgUrl = symbols[Math.floor(Math.random() * symbols.length)];
+
+                // Chèn thẻ <img> vào thay vì chữ
+                petal.innerHTML = `<img src="${randomImgUrl}" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));">`;
 
                 // Vị trí xuất hiện ngẫu nhiên theo chiều ngang
                 petal.style.left = Math.random() * 100 + 'vw';
 
-                // Kích thước to nhỏ ngẫu nhiên
-                petal.style.fontSize = Math.random() * 1.5 + 0.8 + 'rem';
+                // KÍCH THƯỚC ẢNH: Sinh ngẫu nhiên từ 15px đến 35px
+                let size = Math.random() * 20 + 15;
+                petal.style.width = size + 'px';
+                petal.style.height = size + 'px';
 
-                // Tốc độ rơi ngẫu nhiên (từ 5 đến 15 giây)
-                petal.style.animationDuration = Math.random() * 10 + 5 + 's';
+                // Tốc độ rơi ngẫu nhiên (từ 5 đến 12 giây để rơi nhẹ nhàng)
+                petal.style.animationDuration = Math.random() * 7 + 5 + 's';
 
-                // Thời gian bắt đầu rơi trễ ngẫu nhiên để không bị rớt cùng 1 lúc
+                // Thời gian chờ để rơi (giúp ảnh không rớt cái ào cùng 1 lúc)
                 petal.style.animationDelay = Math.random() * 5 + 's';
 
                 document.body.appendChild(petal);
